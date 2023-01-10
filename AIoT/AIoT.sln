@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1704.2
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TrafficLight", "TrafficLight", "{65171D85-6530-4979-94C8-C70AE7FB0C07}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SMS", "SMS", "{9B9B9B70-E4AD-4516-9D49-D317FC5C6742}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMS.Console", "SMS.Console\SMS.Console.csproj", "{E08CDCDA-81D5-46F3-BCC8-FC4E39F00198}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hands", "Hands", "{AFADA001-17DF-4DFC-8A89-FB69A437D5A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DetectHandsJsComponent", "DetectHandsJsComponent\DetectHandsJsComponent.csproj", "{D791FD50-1F33-4A29-9111-D49FED50402B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{78C6E953-C85A-44E5-9651-4B3A9F0B38B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandsApp", "HandsApp\HandsApp.csproj", "{4ED34114-0940-4A05-BE80-9E18F989D39B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E08CDCDA-81D5-46F3-BCC8-FC4E39F00198}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E08CDCDA-81D5-46F3-BCC8-FC4E39F00198}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E08CDCDA-81D5-46F3-BCC8-FC4E39F00198}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E08CDCDA-81D5-46F3-BCC8-FC4E39F00198}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D791FD50-1F33-4A29-9111-D49FED50402B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D791FD50-1F33-4A29-9111-D49FED50402B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D791FD50-1F33-4A29-9111-D49FED50402B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D791FD50-1F33-4A29-9111-D49FED50402B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ED34114-0940-4A05-BE80-9E18F989D39B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ED34114-0940-4A05-BE80-9E18F989D39B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ED34114-0940-4A05-BE80-9E18F989D39B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ED34114-0940-4A05-BE80-9E18F989D39B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9C3D2F9E-C349-4B3A-B1C0-A9D539CB529B}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E08CDCDA-81D5-46F3-BCC8-FC4E39F00198} = {9B9B9B70-E4AD-4516-9D49-D317FC5C6742}
+		{D791FD50-1F33-4A29-9111-D49FED50402B} = {78C6E953-C85A-44E5-9651-4B3A9F0B38B3}
+		{4ED34114-0940-4A05-BE80-9E18F989D39B} = {AFADA001-17DF-4DFC-8A89-FB69A437D5A8}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,57 @@
+﻿<div>
+    Deteksi pose tangan dengan <a href="http://www.mediapipe.dev" target="_blank">MediaPipe</a>. Ijinkan akses ke kamera dan tunjukan tanganmu.
+
+    <div class="container">
+        <video class="input_video selfie"></video>
+        <canvas class="output_canvas" width="1280px" height="720px"></canvas>
+        <div class="loading">
+            <div class="spinner"></div>
+            <div class="message">
+                Loading
+            </div>
+        </div>
+        <div>
+            @if (DetectionResult != null)
+            {
+                if (this.DetectionResult.Hands != null && this.DetectionResult.Hands.Count > 0)
+                {
+                    <ul>
+                        @foreach (var hand in this.DetectionResult.Hands)
+                        {
+                            if(hand.Landmarks.Count>0)
+                            {
+                                var palm=hand.Landmarks[0];
+                                int x = (int)(palm.X*100);
+                                int y = (int)(palm.Y*100);
+                                <li>
+                                    Tangan @(hand.Label=="Right" ? "kanan":"kiri") di kordinat [@x, @y]
+                                </li>
+                            }
+                        }
+                    </ul>
+                    var left = this.DetectionResult.Hands.FirstOrDefault(hand => hand.Label == "Left");
+                    var right = this.DetectionResult.Hands.FirstOrDefault(hand => hand.Label == "Right");
+                    if (left != null && right != null
+                    && left.Landmarks.Count > 0 && right.Landmarks.Count > 0
+                    && left.Landmarks[0].X > right.Landmarks[0].X)
+                    {
+                        <div>Tangan kamu menyilang ?</div>
+                    }
+                }
+                else
+                {
+                    <div>Tidak terlihat ada tangan.</div>
+                }
+            }
+        </div>
+    </div>
+
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+    [Parameter]
+    public Action<string> HandsMove { get; set; }
+    public DetectionResult? DetectionResult { get; set; }
+}
