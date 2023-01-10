@@ -1,0 +1,69 @@
+﻿@page "/"
+
+<PageTitle>Dashboard IoT Sederhana</PageTitle>
+<MudButton @onclick="RandomizeData" Variant="Variant.Filled" Color="Color.Primary">@LabelBtn</MudButton>
+<MudGrid>
+    <MudItem xs="12">
+        <MudChart ChartType="ChartType.Line" ChartSeries="@TempSeries" @bind-SelectedIndex="idx" XAxisLabels="@XAxisLabels" Width="100%" Height="350px"></MudChart>
+    </MudItem>
+    <MudItem xs="12">
+        <MudChart ChartType="ChartType.Line" ChartSeries="@LightSeries" @bind-SelectedIndex="idx" XAxisLabels="@XAxisLabels" Width="100%" Height="350px"></MudChart>
+    </MudItem>
+    <MudItem xs="12">
+        <MudChart ChartType="ChartType.Line" ChartSeries="@PressureSeries" @bind-SelectedIndex="idx" XAxisLabels="@XAxisLabels" Width="100%" Height="350px"></MudChart>
+    </MudItem>
+</MudGrid>
+
+@code {
+    string LabelBtn = "Start Simulation";
+    int idx = -1;
+    bool IsRunning = false;
+    public List<SensorData> TimeSeriesData { get; set; } = new();
+    public List<ChartSeries> TempSeries = new List<ChartSeries>()
+{
+        new ChartSeries() { Name = "Temp", Data = new double[] { } },
+
+    };
+    public List<ChartSeries> LightSeries = new List<ChartSeries>()
+{
+        new ChartSeries() { Name = "Light", Data = new double[] { } },
+
+    };
+    public List<ChartSeries> PressureSeries = new List<ChartSeries>()
+{
+        new ChartSeries() { Name = "Pressure", Data = new double[] { } },
+
+    };
+    public string[] XAxisLabels = { };
+
+    Random random = new Random();
+
+    public async Task RandomizeData()
+    {
+        if (IsRunning)
+        {
+            IsRunning = false;
+            LabelBtn = "Start Simulation";
+            return;
+        }
+        else
+        {
+            LabelBtn = "Stop Simulation";
+            IsRunning = true;
+        }
+
+        int DataPoints = 10;
+        TimeSeriesData.Clear();
+        while (IsRunning)
+        {
+            var newItem = new SensorData() { TimeStamp = DateTime.Now, Light = random.Next(10, 300), Pressure = random.Next(10, 100), Temp = random.Next(28, 38) };
+            TimeSeriesData.Add(newItem);
+            TempSeries[0].Data = TimeSeriesData.Select(x => x.Temp).TakeLast(DataPoints).ToArray();
+            PressureSeries[0].Data = TimeSeriesData.Select(x => x.Pressure).TakeLast(DataPoints).ToArray();
+            LightSeries[0].Data = TimeSeriesData.Select(x => x.Light).TakeLast(DataPoints).ToArray();
+            XAxisLabels = TimeSeriesData.Select(x => x.TimeStamp.ToString("HH:mm:ss")).TakeLast(DataPoints).ToArray();
+            await InvokeAsync(StateHasChanged);
+            await Task.Delay(1000);
+        }
+    }
+}
