@@ -32,8 +32,8 @@ namespace AzureDevice
             board = new ESP32StarterKit();
             
             board.SetupLightSensor(ESP32Pins.IO36, 0, ESP32ADCs.ADC0);
-            //RGB - PIN : 2,4,8
-            board.SetupLed(ESP32Pins.IO02, ESP32Pins.IO04, ESP32Pins.IO05, ESP32Pins.IO23);
+            //RGB - PIN : 2,4,16
+            board.SetupLed(ESP32Pins.IO02, ESP32Pins.IO04, ESP32Pins.IO16, ESP32Pins.IO23);
             board.SetupBMP180();
             board.SetupDisplay();
             board.SetupRelay(ESP32Pins.IO15);
@@ -121,11 +121,11 @@ namespace AzureDevice
             {
                 screen.Clear();
                 screen.DrawString("Action:", colorB, 0, 1, 1, 1);
-                screen.DrawString(obj.Action, colorB, 0, 6, 1, 1); 
-                screen.DrawString("Param1:", colorB, 0, 12, 1, 1);
-                screen.DrawString(obj.Param1, colorB, 0, 18, 1, 1);
-                screen.DrawString("Param2:", colorB, 0, 24, 1, 1);
-                screen.DrawString(obj.Param2, colorB, 0, 30, 1, 1);
+                screen.DrawString(obj.Action, colorB, 0, 11, 1, 1); 
+                screen.DrawString("Param1:", colorB, 0, 21, 1, 1);
+                screen.DrawString(obj.Param1, colorB, 0, 31, 1, 1);
+                screen.DrawString("Param2:", colorB, 0, 41, 1, 1);
+                screen.DrawString(obj.Param2, colorB, 0, 51, 1, 1);
                 screen.Flush();
 
                 switch (obj.Action)
@@ -141,7 +141,7 @@ namespace AzureDevice
                                 case "G":
                                     board.BoardLed2.TurnOn();
                                     break;
-                                case "B":
+                                case "Y":
                                     board.BoardLed3.TurnOn();
                                     break;
                             }
@@ -156,7 +156,7 @@ namespace AzureDevice
                                 case "G":
                                     board.BoardLed2.TurnOff();
                                     break;
-                                case "B":
+                                case "Y":
                                     board.BoardLed3.TurnOff();
                                     break;
                             }
