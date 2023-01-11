@@ -1,4 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using Newtonsoft.Json;
 using SMS.Console.Helper;
 using Spectre.Console;
 
@@ -24,7 +25,8 @@ while (true && device!=null)
 {
     var message = AnsiConsole.Ask<string>("Ketik [green]pesan[/] yang mau dikirim! [yellow]('q' untuk keluar)[/]");
     if (message == "q") break;
-    var hasil = await device.SendMessageToDevice(message);
+    var json = JsonConvert.SerializeObject(new DeviceAction() { Action="Display", Param1=message });
+    var hasil = await device.SendMessageToDevice(json);
     if (hasil)
     {
         AnsiConsole.MarkupLine($"pesan [green]berhasil[/] terkirim {Emoji.Known.ThumbsUp}");
